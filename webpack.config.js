@@ -27,6 +27,40 @@ module.exports = {
     extensions: ['.js'],
     modules: ['node_modules', 'src']
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: [
+          path.dirname(require.resolve('carbon-custom-elements/es')),
+          path.dirname(require.resolve('lit-html')),
+          path.dirname(require.resolve('lit-element')),
+          path.dirname(require.resolve('@webcomponents/custom-elements')),
+          // `ShadyCSS` NPM package is missing its entry point file
+          path.dirname(require.resolve('@webcomponents/shadycss/scoping-shim.min.js')),
+          path.dirname(require.resolve('@webcomponents/shadydom')),
+        ],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    modules: false,
+                    targets: ['last 1 version', 'Firefox ESR', 'ie >= 11'],
+                  },
+                ],
+              ],
+              // `version: '7.3.0'` ensures `@babel/plugin-transform-runtime` is applied to decorator helper
+              plugins: [['@babel/plugin-transform-runtime', { version: '7.3.0' }]],
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new CleanWebpackPlugin({
       verbose: true,
