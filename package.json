@@ -4,15 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "webpack-dev-server --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "server": "live-server --port=3004 --open=./dist/index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@webcomponents/custom-elements": "^1.4.1",
+    "@webcomponents/shadycss": "^1.9.6",
+    "@webcomponents/shadydom": "^1.7.3",
+    "@webcomponents/template": "^1.4.2",
+    "@webcomponents/url": "^0.7.5",
+    "@webcomponents/webcomponents-platform": "^1.0.1",
     "carbon-components": "^10.10.3",
     "carbon-custom-elements": "^1.0.0-beta.10",
+    "core-js": "^3.6.5",
+    "es6-promise": "^4.2.8",
     "lit-element": "^2.3.1",
-    "lit-html": "^1.2.1"
+    "lit-html": "^1.2.1",
+    "live-server": "^1.2.1",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
